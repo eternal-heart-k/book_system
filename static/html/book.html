@@ -4,8 +4,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/book.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/page.css">
 </head>
+
 <body>
-    <a>book</a>
+  <section class="all">
+    <header class="head">
+      <div class="globalhead">
+        <div class="title hoverable" onselectstart="return false;">
+          图书管理系统
+        </div>
+      </div>
+    </header>
+
+    <div class="inside">
+      <div class="query-list">
+        <div class="card">
+          <div class="card-body">
+            <div class="row g-3">
+
+              <div class="col-sm-1">
+                <label for="book-name" class="col-form-label">书名</label>
+              </div>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="book-name">
+              </div>
+
+              <div class="col-sm-1">
+                <label for="author" class="col-form-label">作者</label>
+              </div>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="author">
+              </div>
+
+              <div class="col-sm-1">
+                <label for="book-type" class="col-form-label">类型</label>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" aria-label="Default select example" id="book-type">
+                  <option selected value="0">全部</option>
+                  <option value="1">青春</option>
+                  <option value="2">小说</option>
+                  <option value="3">文学</option>
+                  <option value="4">艺术</option>
+                  <option value="5">娱乐时尚</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <button type="button" class="btn btn-primary" onclick="QueryPageInfo()">查询</button>
+              </div>
+              
+              <div class="col-sm-1">
+                <button type="button" class="btn btn-primary" onclick="AddBook()">添加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="partition table-list">
+        <table id="box-table-a" summary="Employee Pay Sheet">
+          <thead>
+            <tr>
+              <th scope="col">书名</th>
+              <th scope="col">作者</th>
+              <th scope="col">类型</th>
+              <th scope="col">描述</th>
+              <th scope="col">操作</th>
+            </tr>
+          </thead>
+
+          <tbody id="page-info" class="page_content"></tbody>
+
+        </table>
+      </div>
+
+      <div class="partition page-break">
+      </div>
+    </div>
+    
+  </section>
+   
 </body>
+<script src="../js/page.js"></script>
+<script type="text/javascript" src="../js/book.js"></script>
 </html>

@@ -1,0 +1,157 @@
+*{
+	margin: 0;
+	padding: 0;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.head {
+  width: 100%;
+  height: 70px;
+  color: rgba(0,0,0,.85);
+  line-height: 70px;
+  background: #001529;
+}
+
+.globalhead {
+  height: 70px;
+  padding: 0 12px 0 0;
+  background: #001529;
+  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+  position: relative;
+}
+
+.title {
+  letter-spacing: 10px;
+  color:cornflowerblue;
+  text-align: center;
+  font-family:"华文彩云";/*设置字体*/
+  font-size:50px; /*设置字体大小*/
+  font-weight:bolder; /*设置字体粗细*/
+  -webkit-text-stroke:1px cornflowerblue;        /*文字描边*/
+  -webkit-text-fill-color:transparent;    /*设置文字的填充颜色*/
+}
+
+.title:hover {
+  cursor: default;
+}
+
+.hoverable:before{
+  position:absolute;
+  pointer-events: none;
+  z-index:-1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height:10px;
+  width:90%;
+  opacity:0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+  /* W3C */
+  transition-duration: 0.3s;
+  transition-property: transform, opacity;
+}
+
+.hoverable:hover, .hoverable:active, .hoverable:focus{
+  transform: translateY(-5px);
+}
+.hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before{
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+@keyframes bounce-animation {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.bounce {
+  animation-name: bounce-animation;
+  animation-duration: 2s;
+}
+
+
+.inside {
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.partition {
+  margin-top: 50px;
+}
+
+.query-list {
+  margin-top: 20px;
+}
+
+.table-list {
+  
+}
+
+.pagebreak {
+
+}
+
+#box-table-a
+{
+	font: normal 15px auto “Trebuchet MS”, Verdana, Arial, Helvetica, sans-serif;
+  width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+  margin-top: 30px;
+}
+#box-table-a th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#box-table-a td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+#box-table-a tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+
+.col-form-label {
+  float: right;
+}

@@ -45,6 +45,7 @@ CREATE TABLE `user` (
   `Id` int NOT NULL AUTO_INCREMENT COMMENT '主键Id',
   `Account` varchar(20) NOT NULL COMMENT '账号',
   `Password` varchar(20) NOT NULL COMMENT '密码',
+  `NickName` varchar(20) NOT NULL COMMENT '昵称',
   `CreateTime` datetime NOT NULL COMMENT '创建时间',
   `IsDeleted` bool NOT NULL COMMENT '是否删除',
   PRIMARY KEY (`Id`)

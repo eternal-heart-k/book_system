@@ -1,5 +1,6 @@
 from datetime import datetime
 from fastapi import Depends, APIRouter
+from dto.bookquerydto import BookQueryDto
 from view.database import get_db
 from model.book import Book
 from dto.apiresult import ApiResult
@@ -14,11 +15,20 @@ async def GetABook(id: int, db = Depends(get_db)):
         return ApiResult(False, True, "id有误, 查询不到此书籍")
     return ApiResult(book)
 
-@router.get("/list")
-async def GetBookList(pageindex: int, pagesize: int, db = Depends(get_db)):
+@router.post("/list")
+async def GetBookList(dto: BookQueryDto, db = Depends(get_db)):
     books = db.query(Book).filter(Book.IsDeleted==False).all()
-    start = (pageindex - 1) * pagesize
-    return ApiResult({"items": books[start : start + pagesize], "count": len(books)})
+    if dto.BookName is not None and dto.BookName != "":
+        books = list(filter(lambda x: x.BookName.find(dto.BookName) >= 0, books))
+    if dto.Author is not None and dto.Author != "":
+        books = list(filter(lambda x: x.Author.find(dto.Author) >= 0, books))
+    if dto.Type != 0:
+        books = list(filter(lambda x: x.Type == dto.Type, books))
+
+    books.sort(key=lambda x: x.Id)
+    start = (dto.PageIndex - 1) * dto.PageSize
+    totalcount = len(books)
+    return ApiResult({"Count": totalcount, "Items": books[start : start + dto.PageSize]})
 
 @router.post("")
 async def AddABook(bookdto: BookDto, db = Depends(get_db)):

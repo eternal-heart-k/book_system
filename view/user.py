@@ -33,7 +33,7 @@ async def Register(userdto: UserDto, db = Depends(get_db)):
         user = db.query(User).filter(User.Account==userdto.Account, User.IsDeleted==False).first()
         if user:
             return ApiResult(False, True, "账号已存在")
-        newuser = User(Account=userdto.Account, Password=userdto.Password, CreateTime=datetime.now(), IsDeleted=False)
+        newuser = User(Account=userdto.Account, Password=userdto.Password, NickName=userdto.NickName, CreateTime=datetime.now(), IsDeleted=False)
         db.add(newuser)
         db.commit()
         db.refresh(newuser)

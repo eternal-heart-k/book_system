@@ -6,5 +6,6 @@ class User(declarative_base()):
     Id = Column(Integer, primary_key=True, index=True)
     Account = Column(String(20))
     Password = Column(String(20))
+    NickName = Column(String(20))
     CreateTime = Column(DateTime)
     IsDeleted = Column(Boolean)

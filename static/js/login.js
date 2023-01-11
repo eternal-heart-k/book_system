@@ -1,5 +1,10 @@
 let systemURL = "http://127.0.0.1:8000/";
 
+let value = JSON.parse(localStorage.getItem("book_system"));
+if (value != null && value.expireTime >= Date.now()) {
+    window.location.href = "../html/book.html";
+}
+
 //验证表单是否为空，若为空则将焦点聚焦在input表单上，否则表单通过，登录成功
 function Login() {
     ShowMsg("");
@@ -28,6 +33,7 @@ function Login() {
                 setTimeout(function () {//做延时以便显示登录状态值
                     ShowMsg("正在登录中...");
                     console.log(data);
+                    SolveLocalStorage(account);
                     window.location.href = "../html/book.html";//指向登录的页面地址
                 }, 100)
             } else {
@@ -45,12 +51,25 @@ function Register() {
     console.log("register");
 }
 //错误信息提醒
-function ShowMsg(msg){
+function ShowMsg(msg) {
     $("#errormsg").text(msg);
 }
 
-//监听回车键提交
+function SolveLocalStorage(account) {
+    console.log("localstorage", account);
+    let valuetemp = localStorage.getItem("book_system");
+    if (valuetemp != null) {
+        localStorage.removeItem("book_system");
+    }
+    let nowDate = new Date()
+    let nowTime = nowDate.getTime()  //当前时间戳
+    let futureTime = Math.abs(nowTime) + (15 * 24 * 60 * 60 * 1000) //15天后的时间戳
+    let expireTime = new Date(futureTime);
+    localStorage.setItem("book_system", JSON.stringify({"account": account, "expireTime": expireTime.getTime()}));
+}
+
 $(function(){
+    //监听回车键提交
     document.onkeydown=keyDownSearch;
     function keyDownSearch(e) {
         var theEvent = e || window.event;
