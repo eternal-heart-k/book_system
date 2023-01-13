@@ -1,8 +1,13 @@
 let systemURL = "http://127.0.0.1:8000/";
 
 let value = JSON.parse(localStorage.getItem("book_system"));
-if (value != null && value.expireTime >= Date.now()) {
-    window.location.href = "../html/book.html";
+if (value != null) {
+    if (value.expireTime >= Date.now()) {
+        window.location.href = "../html/book.html";
+    }
+    else {
+        localStorage.removeItem("book_system");
+    }
 }
 
 //验证表单是否为空，若为空则将焦点聚焦在input表单上，否则表单通过，登录成功
@@ -63,7 +68,7 @@ function SolveLocalStorage(account) {
     }
     let nowDate = new Date()
     let nowTime = nowDate.getTime()  //当前时间戳
-    let futureTime = Math.abs(nowTime) + (15 * 24 * 60 * 60 * 1000) //15天后的时间戳
+    let futureTime = Math.abs(nowTime) + (5 * 60 * 1000) //5分钟后的时间戳
     let expireTime = new Date(futureTime);
     localStorage.setItem("book_system", JSON.stringify({"account": account, "expireTime": expireTime.getTime()}));
 }
@@ -75,7 +80,7 @@ $(function(){
         var theEvent = e || window.event;
         var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
         if (code == 13) {
-            $('#login').click();
+            Login();
             return false;
         }
         return true;

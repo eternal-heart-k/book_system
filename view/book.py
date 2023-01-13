@@ -25,7 +25,7 @@ async def GetBookList(dto: BookQueryDto, db = Depends(get_db)):
     if dto.Type != 0:
         books = list(filter(lambda x: x.Type == dto.Type, books))
 
-    books.sort(key=lambda x: x.Id)
+    books.sort(key=lambda x: -x.Id)
     start = (dto.PageIndex - 1) * dto.PageSize
     totalcount = len(books)
     return ApiResult({"Count": totalcount, "Items": books[start : start + dto.PageSize]})
@@ -33,6 +33,9 @@ async def GetBookList(dto: BookQueryDto, db = Depends(get_db)):
 @router.post("")
 async def AddABook(bookdto: BookDto, db = Depends(get_db)):
     try:
+        book = db.query(Book).filter(Book.BookName==bookdto.BookName, Book.Author==bookdto.Author, Book.IsDeleted==False).first()
+        if book:
+            return ApiResult(False, False, "添加失败，已存在此作者这本书籍")
         newbook = Book(BookName=bookdto.BookName, Author=bookdto.Author, Type=bookdto.Type, 
             Description=bookdto.Description, CreateTime=datetime.now(), IsDeleted=False)
         db.add(newbook)

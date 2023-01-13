@@ -3,7 +3,6 @@ function page_ctrl(data_obj) {
       return;
     };//翻页容器dom对象,必要参数
     $(obj_box).html("");
-    console.log(data_obj.total_item);
     let total_item = (data_obj.total_item !== undefined) ? parseInt(data_obj.total_item) : 0;//数据条目总数,默认为0,组件将不加载
     let per_num = (data_obj.per_num !== undefined) ? parseInt(data_obj.per_num) : 10;//每页显示条数,默认为10条
     let current_page = (data_obj.current_page!== undefined) ? parseInt(data_obj.current_page) : 1;//当前页,默认为1

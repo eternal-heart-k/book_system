@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/input-box.css">
     <link rel="stylesheet" type="text/css" href="../css/book.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/page.css">
+    <script src="../js/sweetalert-dev.js"></script>
 </head>
 
 <body>
@@ -54,7 +57,7 @@
                   <option value="5">娱乐时尚</option>
                 </select>
               </div>
-              <div class="col-sm-1">
+              <div class="col-sm-1 query-btn">
                 <button type="button" class="btn btn-primary" onclick="QueryPageInfo()">查询</button>
               </div>
               
@@ -83,12 +86,46 @@
         </table>
       </div>
 
-      <div class="partition page-break">
-      </div>
+      <div class="partition page-break"></div>
     </div>
-    
+    <div class="hidebg"></div>
+    <div class="addorupdate">
+      <div class="wrapper">
+          <div class="input-data">
+              <input type="text" required="" id="addorupdate-bookname" />
+              <div class="underline"></div>
+              <label>书名</label>
+          </div>
+      </div>
+      <div class="wrapper">
+          <div class="input-data">
+              <input type="text" required="" id="addorupdate-author" />
+              <div class="underline"></div>
+              <label>作者</label>
+          </div>
+      </div>
+      <div class="input-booktype wrapper">
+          <select class="form-control" aria-label="Default select example" id="book-type-add">
+              <option selected value="0">请选择书籍类型</option>
+              <option value="1">青春</option>
+              <option value="2">小说</option>
+              <option value="3">文学</option>
+              <option value="4">艺术</option>
+              <option value="5">娱乐时尚</option>
+          </select>
+      </div>
+      <div class="wrapper">
+          <textarea placeholder="书籍简介" class="textarea-description" id="addorupdate-description" word-break:break-all></textarea>
+      </div>
+      <div class="wrapper">
+        <div id="hideid"></div>
+        <button type="button" id="btn-cancel" class="btn btn-secondary" onclick="HideTheBox()">取消添加</button>
+        <button type="button" id="btn-addorupdate" class="btn btn-primary" onclick="AddOrUpdate()">确认添加</button>
+      </div>
+      
+  </div>
   </section>
-   
+  
 </body>
 <script src="../js/page.js"></script>
 <script type="text/javascript" src="../js/book.js"></script>
